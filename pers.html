@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <title>Bootstrap Example</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      
+      <style>
+      </style>
+    </head>
+    <body>
+    <div>
+        <h2>Select a Design Category :</h2>
+    </div>
+    <div class="media" id="myDIV">
+        <img class="d-flex rounded-circle avatar z-depth-1-half mr-3" src="images/i1.png" width="100" height="100">
+        <div class="media-body">
+          <h4 class="mt-0 font-weight-bold blue-text">Formal</h4>
+          <a href="final.html"><img src="images/f3._400x400.jpg" id="i1" onClick="GFG_click(this.id)" alt="Nature" style="width:400px;height:400px;"></a>
+          <a href="final.html"><img src="images/f2_400x400.jpg" id="i2" onClick="GFG_click(this.id)" alt="Nature" style="width:400px;height:400px;"></a>
+              <a href="final.html"><img id="blah" src=""onClick="GFG_click(this.id)" ></a>
+              <br>
+              Add your own Template:<input type='file'id="blah" onchange="readURL(this,this.id);" />
+            </div>
+
+          </div>
+
+          
+        </div>
+      </div>
+      <div class="media">
+        <img class="d-flex rounded-circle avatar z-depth-1-half mr-3" src="images/i2.png" width="100" height="100">
+        <div class="media-body">
+          <h4 class="mt-0 font-weight-bold blue-text">Sports</h4>
+          <a href="final.html"><img src="images/sp1_400x400.jpeg" id="i3" width="400" height="400" onClick="GFG_click(this.id)"  ></a>
+              <a href="final.html"><img src="images/sp2_400x400.jpg" id="i4" width="400" height="400" onClick="GFG_click(this.id)" ></a>
+              <a href="final.html"><img id="blah1" src="" onClick="GFG_click(this.id)" ></a>
+              <br>
+              Add your own Template:<input type='file'  id="blah1" onchange="readURL(this,this.id);" />
+                
+                
+        </div>
+        
+      </div>
+      <div class="media">
+        <img class="d-flex rounded-circle avatar z-depth-1-half mr-3" src="images/i3.png" width="120" height="120">
+        <div class="media-body">
+          <h4 class="mt-0 font-weight-bold blue-text">kids</h4>
+          <a href="final.html"><img src="images/k1_400x400.jpg" id="i5" width="400" height="400" onClick="GFG_click(this.id)" ></a>
+              <a href="final.html"><img src="images/k2_400x400.jpg" id="i6" width="400" height="400" onClick="GFG_click(this.id)" ></a>
+              <a href="final.html"><img id="blah2" src="" onClick="GFG_click(this.id)" ></a>
+              <br>
+              Add your own Template:<input type='file' id="blah2" onchange="readURL(this,this.id);" />
+                
+                
+  
+             
+              
+        </div>
+        
+      </div>
+      <div class="media">
+        <img class="d-flex rounded-circle avatar z-depth-1-half mr-3" src="images/i4.png" width="120" height="120">
+        <div class="media-body">
+          <h4 class="mt-0 font-weight-bold blue-text">Fun</h4>
+          <a href="final.html"><img src="images/fu1_400x400.jpg" id="i7" width="400" height="400" onClick="GFG_click(this.id)" ></a>
+           <a href="final.html"><img src="images/fu2_400x400.jpg" id="i8" width="400" height="400" onClick="GFG_click(this.id)" ></a>
+            <a href="final.html"><img id="blah3" src=""  onClick="GFG_click(this.id)" ></a>
+              <br>
+              Add your own Template:<input type='file'id="blah3" onchange="readURL(this,this.id);" />
+                
+        </div>
+        
+      </div>
+      <script>
+       function readURL(input,img) {
+       if (input.files && input.files[0]) {
+           var reader = new FileReader();
+           
+
+           reader.onload = function (e) {
+              var k1=img;
+                   document.getElementById(k1).src= e.target.result;
+                 
+           };
+           document.getElementById(img).height = "400";
+                   document.getElementById(img).width = "400";
+
+           reader.readAsDataURL(input.files[0]);
+       }
+   }
+   function getBase64Image(img) {
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+
+    var dataURL = canvas.toDataURL("image/png");
+
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+}
+          
+            function GFG_click(clicked) { 
+                // el_down.innerHTML = "ID = "+clicked; 
+                // var k= clicked;
+                // //var c = k.slice(2);
+                // el_up.innerHTML=k;
+                bannerImage = document.getElementById(clicked.valueOf());
+                imgData = getBase64Image(bannerImage);
+                localStorage.setItem("url", imgData);
+
+
+            }   
+            function myfunc()
+   {
+   bannerImage = document.getElementById("blah");
+               imgData = getBase64Image(bannerImage);
+               localStorage.setItem("url", imgData);
+   }       
+   
+   </script>
+
+        
+        </div>
+      </div>
+      
+    </body>
+    </html>
+

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic input filed creation</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        
+     div.img1{
+       position: absolute;
+    top:40px;
+    z-index: -1;
+    
+     }
+     div.btn
+     {
+       position:absolute;
+       top:700px;
+       left:980px;
+     }
+     div.btn1{
+       position: absolute; 
+       top:500px;
+       left:80px;
+     }
+     #p0{
+        position:absolute; 
+        /* z-index:-1; */
+        /* width:auto;
+        height:auto; */
+        font-size: 30px;
+         top:10px;
+        left:120px;  
+
+     }
+     p{
+       font-size: 30px;
+     }
+     /* .dragme{
+      left: 0;
+  top: 50%;
+     } */
+    
+    </style>
+</head>
+<body>
+  <p id="demo"></p>
+  <p id="demo1"></p>
+       <h5><b>Drag on the text to move</b></h5><br>
+    <div>
+    <div class="col-sm-6">
+    <div class="element-wrapper">
+        <div class="row">
+           
+            <input type="text" placeholder="your name" id="0" >
+              <select name="newSkill" id="0">
+                <option >Times New Roman</option>
+                <option>Arial</option>
+                <option >Georgia</option>
+                <option>Palatino Linotype</option>
+                <option>Book Antiqua</option>
+                <option>Times New Roman</option>
+                <option>Arial</option>
+                <option>Helvetica</option>
+                <option>Arial Black</option>
+                <option>Impact</option>
+                <option>Lucida Sans Unicode</option>
+                <option>Tahoma</option>
+                <option>Verdana</option>
+                <option>Courier New</option>
+                <option>Lucida Console</option>
+            </select>
+           
+              <input type="text" placeholder="font size" id="1"  class="something">
+            
+            <!-- <button onclick="apply()">apply</button> -->
+        </div>
+    </div>
+    
+    
+    <button class="btn-add-row">
+  Add new element
+    </button>
+    </div>
+    
+    <div id="text">
+    <div class="col-sm-6">
+      <div class="img2">
+        <p id="p0" class="dragme1" value="hello"></p>
+        <p id="px"></p>
+     <div class="img1"><img src="images/IMG-20200421-WA0023_400x400.jpg"  width="600" height="600" id="img"></div>
+      </div>
+    </div>
+    </div>
+   <div class="btn"> <button id="button">download</button></div>
+   <div class="btn1"> <button onclick="goBack()">Go Back</button></div>
+  </div>
+  
+ 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+<script src="http://cdn.jsdelivr.net/g/filesaver.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+    document.getElementsByTagName("INPUT")[0].addEventListener("click", function() {text(this.id);});
+    document.getElementsByTagName("INPUT")[0].addEventListener("keyup",function() {func(this.id);});
+    document.getElementsByTagName("INPUT")[1].addEventListener("keyup",function() {func1(this.id);});
+    document.getElementsByTagName("select")[0].addEventListener("change",function() {func2(this.id);});
+    var dragme = document.getElementsByClassName("dragme1");
+        for (var i = 0; i < dragme.length; i++) {
+            $(dragme[i]).draggable();
+        }
+       
+    var i=0,p=0;
+   
+    $(document).on("click",".btn-add-row",function() {
+      var row=$(".row").eq(0).clone().show();
+      p=p+1;
+     var k=1;
+      $(".element-wrapper").append(row);
+      var l=document.getElementsByTagName("input").length;
+      var l1=document.getElementsByTagName("select").length;
+      
+      document.getElementsByTagName("select")[l1-1].setAttribute("id",(l1-1));
+     
+      document.getElementsByTagName("select")[l1-1].addEventListener("change",function() {func2(this.id);});
+      var node=document.getElementsByTagName("input")[l-2];
+      node.setAttribute("id",(l-2));
+      document.getElementsByTagName("input")[l-1].setAttribute("id",(l-1));
+
+     // document.getElementById("demo").innerHTML=l;
+      var node1 = document.createElement("p");
+      node1.setAttribute("id","p"+((l-2)/2));
+      node1.setAttribute("class","dragme")
+     document.getElementById("px").appendChild(node1);
+     document.getElementById("p"+((l-2)/2)).style.top="10px";
+     document.getElementById("p"+((l-2)/2)).style.left="120px";
+     document.getElementById("p"+((l-2)/2)).style.position="absolute";
+     
+
+      document.getElementsByTagName("INPUT")[l-2].addEventListener("click", function() {text(this.id);});
+      document.getElementsByTagName("INPUT")[l-2].addEventListener("keyup",function() {func(this.id);});
+      document.getElementsByTagName("INPUT")[l-1].addEventListener("keyup",function() {func1(this.id);});
+      document.getElementsByTagName("INPUT")[l-2].value="";
+      document.getElementsByTagName("INPUT")[l-1].value="";
+      var dragme = document.getElementsByClassName("dragme");
+        for (var i = 0; i < dragme.length; i++) {
+            $(dragme[i]).draggable();
+        }
+       
+      
+    });
+    function func1(e)
+        {
+          document.getElementById("p"+(e-1)/2).style.fontSize=document.getElementById(e).value+"px";
+        }
+        function func2(fid)
+    {
+      var skillsSelect = document.getElementsByTagName("select")[fid];
+       var font = skillsSelect.options[skillsSelect.selectedIndex].text;
+          k=document.getElementById("p"+fid);
+        // k.style.fontSize=f+"px";
+      k.style.fontFamily = font;
+      
+    }
+   var idx,k;
+    function text(iid) {
+      idx=iid;
+      // document.getElementById("iid").style.top="30px";
+      // document.getElementById("iid").style.left="60px";
+    
+}
+function func(iid){
+  var n=Number(iid);
+  //alert(n);
+  document.getElementById("p"+(n/2)).innerHTML=document.getElementById(n).value;
+}
+
+     var dataImage = localStorage.getItem('url');
+ bannerImg = document.getElementById('img');
+  bannerImg.src = "data:image/png;base64," + dataImage;
+ var Img = document.getElementById('img');
+ if(Img && Img.style) {
+     Img.style.height = '600px';
+     Img.style.width = '600px';
+ }
+
+    //to remove
+    $(document).on("click",".btn-remove-row",function() {
+      var index=$(".btn-remove-row").index(this);
+      $(".row").eq(index).remove();
+    });
+    $(document).ready(function(){
+    $("#button").click(function(){
+            domtoimage.toBlob(document.getElementById('text')).then(function (blob) {
+        window.saveAs(blob, "output.jpg");
+        });
+    });
+
+    });
+    
+    function apply(){
+      i=Number(idx);
+       // var x = document.getElementsByTagName("INPUT")[i].value;
+        //var f =document.getElementsByTagName("INPUT")[i+1].value; 
+        var skillsSelect = document.getElementsByTagName("select")[i/2];
+       var font = skillsSelect.options[skillsSelect.selectedIndex].text;
+         document.getElementById("p"+i/2).innerHTML = x;
+          k=document.getElementById("p"+i/2);
+        // k.style.fontSize=f+"px";
+      k.style.fontFamily = font;
+     // var Img = document.getElementById('img');
+    
+
+     
+    }
+   
+    function goBack() {
+  window.history.back();
+   }  
+
+    </script>
+</body>
+</html>
